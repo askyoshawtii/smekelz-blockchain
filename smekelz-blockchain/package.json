@@ -1,0 +1,19 @@
+{
+  "name": "free-smekelz-blockchain",
+  "version": "1.0.0",
+  "scripts": {
+    "blockchain": "ganache-cli -d -m "smekelz" -a 10 -g 20000000 -l 10000000",
+    "backend": "node backend/server.js",
+    "frontend": "cd frontend && npm start",
+    "dev": "concurrently \"npm run blockchain\" \"npm run backend\" \"npm run frontend\""
+  },
+  "dependencies": {
+    "ganache-cli": "^6.12.2",
+    "web3": "^1.8.0",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}

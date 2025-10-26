@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  blockchain:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+    ports:
+      - "3000:3000"
+    command: npm start
+    environment:
+      - NODE_ENV=development
+
+  frontend:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - ./frontend:/app
+    ports:
+      - "8080:8080"
+    command: npm run dev
+    depends_on:
+      - blockchain
+
+  ganache:
+    image: trufflesuite/ganache-cli:latest
+    ports:
+      - "8545:8545"
+    command: ["-d", "-m", "smekelz", "-a", "10", "-g", "20000000"]
